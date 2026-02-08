@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Surevia - Clear, simple insurance coverage for health, auto, life, and business. Get a free quote today. No confusion, just confidence.">
+    <meta name="keywords" content="insurance, health insurance, auto insurance, life insurance, business insurance, insurance quotes, affordable coverage">
+    <title>Surevia - A Better Way To Be Covered | Simple Insurance Solutions</title>
+    
+    <!-- Font Awesome for Professional Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; overflow-x: hidden; background: #fff; }
+        
+        /* ========== IMGUR IMAGE CONFIGURATION ========== */
+        :root {
+            --logo-url: url('https://i.imgur.com/YOUR-LOGO.png');
+            --hero1-url: url('https://i.imgur.com/HERO-SLIDE-1.jpg');
+            --hero2-url: url('https://i.imgur.com/HERO-SLIDE-2.jpg');
+            --hero3-url: url('https://i.imgur.com/HERO-SLIDE-3.jpg');
+            --health-url: url('https://i.imgur.com/HEALTH-BG.jpg');
+            --auto-url: url('https://i.imgur.com/AUTO-BG.jpg');
+            --life-url: url('https://i.imgur.com/LIFE-BG.jpg');
+            --business-url: url('https://i.imgur.com/BUSINESS-BG.jpg');
+            --primary: #dc143c;
+            --primary-dark: #b01030;
+            --primary-light: #ff4567;
+            --secondary: #c71585;
+        }
+        
+        /* Navigation */
+        .nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(255,255,255,0.98); backdrop-filter: blur(20px); z-index: 1000; border-bottom: 1px solid rgba(220,20,60,0.1); padding: 1.2rem 3rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .logo { display: flex; align-items: center; gap: 0.75rem; cursor: pointer; transition: transform 0.3s; }
+        .logo:hover { transform: scale(1.02); }
+        .logo-box { width: 45px; height: 45px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 1.6rem; box-shadow: 0 4px 15px rgba(220,20,60,0.3); }
+        .logo-text-group { display: flex; flex-direction: column; }
+        .logo-text { font-weight: 800; color: var(--primary); font-size: 1.6rem; letter-spacing: -0.5px; }
+        .logo-sub { font-size: 0.65rem; color: #666; letter-spacing: 0.15em; font-weight: 600; text-transform: uppercase; }
+        .nav-actions { display: flex; gap: 1rem; align-items: center; }
+        .menu-btn { background: none; border: none; font-size: 1.8rem; cursor: pointer; color: var(--primary); padding: 0.5rem; display: none; }
+        
+        /* Sticky CTA Button */
+        .sticky-cta { position: fixed; bottom: 2rem; right: 2rem; z-index: 999; }
+        .sticky-cta-btn { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 1.2rem 2rem; border-radius: 50px; font-weight: 700; border: none; cursor: pointer; box-shadow: 0 10px 40px rgba(220,20,60,0.4); font-size: 1rem; transition: all 0.3s; display: flex; align-items: center; gap: 0.5rem; }
+        .sticky-cta-btn:hover { transform: translateY(-4px); box-shadow: 0 15px 50px rgba(220,20,60,0.5); }
+        .sticky-cta-btn i { font-size: 1.2rem; }
+        
+        /* Menu Overlay */
+        .menu-overlay { position: fixed; top: 80px; left: 0; right: 0; background: white; border-bottom: 1px solid rgba(220,20,60,0.1); box-shadow: 0 15px 40px rgba(0,0,0,0.1); padding: 2rem 3rem; z-index: 999; display: none; }
+        .menu-overlay.active { display: block; }
+        .menu-item { display: block; width: 100%; text-align: left; padding: 1rem 1.5rem; background: none; border: none; font-size: 1.1rem; cursor: pointer; border-radius: 0.75rem; margin-bottom: 0.5rem; transition: all 0.3s; color: #333; font-weight: 600; }
+        .menu-item:hover { background: rgba(220,20,60,0.05); color: var(--primary); transform: translateX(5px); }
+        
+        /* Hero Section */
+        .hero { margin-top: 80px; min-height: 100vh; position: relative; overflow: hidden; display: flex; align-items: center; }
+        .hero-slides { position: absolute; inset: 0; display: flex; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+        .hero-slide { min-width: 100%; height: 100%; background-size: cover; background-position: center; background-color: #f5f5f5; }
+        .hero-slide:nth-child(1) { background-image: var(--hero1-url); }
+        .hero-slide:nth-child(2) { background-image: var(--hero2-url); }
+        .hero-slide:nth-child(3) { background-image: var(--hero3-url); }
+        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,0,0,0.75), rgba(220,20,60,0.4)); z-index: 1; }
+        .hero-content-wrapper { position: relative; z-index: 10; width: 100%; max-width: 1400px; margin: 0 auto; padding: 3rem; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem; align-items: center; }
+        .hero-text { color: white; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 0.75rem; background: rgba(255,255,255,0.15); color: white; padding: 0.6rem 1.5rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; margin-bottom: 1.5rem; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); }
+        .hero-badge i { font-size: 1rem; }
+        .hero-title { font-size: clamp(2.8rem, 6.5vw, 5rem); font-weight: 900; margin-bottom: 1.5rem; line-height: 1.1; text-shadow: 2px 4px 30px rgba(0,0,0,0.5); letter-spacing: -1px; }
+        .hero-subtitle { font-size: clamp(1.15rem, 2.2vw, 1.5rem); margin-bottom: 2.5rem; opacity: 0.95; text-shadow: 1px 2px 15px rgba(0,0,0,0.5); line-height: 1.6; font-weight: 400; }
+        .hero-features { display: flex; gap: 2.5rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+        .hero-feature { display: flex; align-items: center; gap: 0.75rem; font-size: 1.05rem; font-weight: 500; }
+        .hero-feature i { font-size: 1.3rem; color: #4ade80; }
+        
+        /* Lead Form - Professional */
+        .lead-form { background: white; padding: 3rem; border-radius: 20px; box-shadow: 0 25px 80px rgba(0,0,0,0.35); }
+        .lead-form-header { margin-bottom: 2rem; }
+        .lead-form h3 { font-size: 2rem; font-weight: 800; color: var(--primary); margin-bottom: 0.5rem; }
+        .lead-form p { color: #666; font-size: 1.05rem; }
+        .form-group { margin-bottom: 1.2rem; }
+        .form-label { display: block; font-weight: 600; color: #333; margin-bottom: 0.6rem; font-size: 0.95rem; }
+        .form-input, .form-select { width: 100%; padding: 1rem 1.2rem; border: 2px solid #e5e5e5; border-radius: 10px; font-size: 1rem; transition: all 0.3s; font-family: inherit; }
+        .form-input:focus, .form-select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px rgba(220,20,60,0.1); }
+        .form-select { cursor: pointer; background: white; }
+        .form-privacy { font-size: 0.85rem; color: #999; text-align: center; margin-top: 0.75rem; }
+        .hero-dots { position: absolute; bottom: 3rem; left: 50%; transform: translateX(-50%); display: flex; gap: 0.75rem; z-index: 20; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.4); cursor: pointer; transition: all 0.3s; border: none; }
+        .dot.active { width: 3.5rem; background: white; border-radius: 5px; }
+        
+        /* Trust Bar - Professional Icons */
+        .trust-bar { background: linear-gradient(to right, #fafafa, #fff, #fafafa); padding: 2rem 3rem; border-bottom: 1px solid #f0f0f0; }
+        .trust-content { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; }
+        .trust-item { display: flex; align-items: center; gap: 1rem; padding: 1rem; border-radius: 12px; transition: all 0.3s; }
+        .trust-item:hover { background: rgba(220,20,60,0.03); }
+        .trust-icon { width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, rgba(220,20,60,0.1), rgba(199,21,133,0.1)); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: var(--primary); }
+        .trust-text { flex: 1; }
+        .trust-label { font-weight: 700; color: #333; font-size: 1.05rem; margin-bottom: 0.2rem; }
+        .trust-sub { font-size: 0.85rem; color: #666; }
+        
+        /* Scrolling Text Bar */
+        .scroll-bar { background: linear-gradient(90deg, var(--primary), var(--secondary), var(--primary)); padding: 1.2rem 0; overflow: hidden; border-top: 2px solid rgba(0,0,0,0.1); border-bottom: 2px solid rgba(0,0,0,0.1); }
+        .scroll-content { display: flex; white-space: nowrap; animation: scroll 20s linear infinite; }
+        .scroll-text { color: white; font-weight: 700; margin: 0 4rem; font-size: 1.05rem; letter-spacing: 0.05em; display: flex; align-items: center; gap: 0.75rem; }
+        .scroll-text i { font-size: 1.2rem; }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        
+        /* Sections */
+        section { padding: 6rem 3rem; max-width: 1400px; margin: 0 auto; }
+        h2 { font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 900; color: var(--primary); margin-bottom: 1rem; text-align: center; letter-spacing: -0.5px; }
+        .section-subtitle { text-align: center; color: #666; font-size: 1.2rem; margin-bottom: 4rem; max-width: 750px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+        .grid { display: grid; gap: 2.5rem; }
+        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); }
+        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+        .grid-4 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+        
+        /* Stats Section - Professional */
+        .stats-section { background: linear-gradient(135deg, rgba(220,20,60,0.03), rgba(199,21,133,0.03)); padding: 5rem 3rem; border-radius: 30px; margin: 0 3rem; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 3rem; text-align: center; }
+        .stat-item { background: white; padding: 2.5rem 2rem; border-radius: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: all 0.3s; }
+        .stat-item:hover { transform: translateY(-8px); box-shadow: 0 12px 35px rgba(220,20,60,0.15); }
+        .stat-icon { width: 60px; height: 60px; margin: 0 auto 1.5rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 15px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.8rem; box-shadow: 0 8px 25px rgba(220,20,60,0.3); }
+        .stat-number { font-size: 3.5rem; font-weight: 900; color: var(--primary); margin-bottom: 0.5rem; line-height: 1; }
+        .stat-label { color: #666; font-weight: 600; font-size: 1.05rem; }
+        
+        /* Logo Section */
+        .logo-section { display: flex; align-items: center; justify-content: center; padding: 3rem 0; }
+        .logo-container { width: 350px; height: 350px; border-radius: 30px; background: linear-gradient(135deg, rgba(220,20,60,0.08), rgba(199,21,133,0.08)); display: flex; align-items: center; justify-content: center; box-shadow: 0 15px 50px rgba(220,20,60,0.2); overflow: hidden; position: relative; }
+        .logo-container::before { content: ''; position: absolute; inset: 0; background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent); transform: translateX(-100%); animation: shimmer 3s infinite; }
+        @keyframes shimmer { 100% { transform: translateX(100%); } }
+        .logo-image { max-width: 75%; max-height: 75%; object-fit: contain; animation: logoFloat 3s ease-in-out infinite; filter: drop-shadow(0 10px 30px rgba(220,20,60,0.3)); }
+        @keyframes logoFloat { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-15px) scale(1.05); } }
+        
+        /* Cards - Premium Design */
+        .card { background: white; border-radius: 24px; padding: 2.5rem; box-shadow: 0 6px 25px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; cursor: pointer; min-height: 340px; display: flex; flex-direction: column; border: 1px solid rgba(220,20,60,0.1); }
+        .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--primary), var(--secondary)); transform: scaleX(0); transition: transform 0.4s; }
+        .card:hover::before { transform: scaleX(1); }
+        .card:hover { transform: translateY(-12px); box-shadow: 0 20px 50px rgba(220,20,60,0.2); }
+        .card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.08; transition: opacity 0.4s; }
+        .card:hover .card-bg { opacity: 0.15; }
+        .card-content { position: relative; z-index: 2; flex: 1; display: flex; flex-direction: column; }
+        .icon-box { width: 75px; height: 75px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, rgba(220,20,60,0.1), rgba(199,21,133,0.1)); color: var(--primary); transition: all 0.3s; }
+        .card:hover .icon-box { transform: scale(1.1); box-shadow: 0 8px 25px rgba(220,20,60,0.2); }
+        .card h3 { font-size: 2rem; font-weight: 800; color: #1a1a1a; margin-bottom: 0.75rem; }
+        .card p { color: #666; line-height: 1.7; font-size: 1.05rem; margin-bottom: 1.5rem; flex: 1; }
+        .card-cta { color: var(--primary); font-weight: 700; display: flex; align-items: center; gap: 0.75rem; font-size: 1.05rem; transition: gap 0.3s; }
+        .card:hover .card-cta { gap: 1.25rem; }
+        .card-cta i { font-size: 1.2rem; }
+        .card[data-coverage="health"] .card-bg { background-image: var(--health-url); }
+        .card[data-coverage="auto"] .card-bg { background-image: var(--auto-url); }
+        .card[data-coverage="life"] .card-bg { background-image: var(--life-url); }
+        .card[data-coverage="business"] .card-bg { background-image: var(--business-url); }
+        
+        /* Step Cards - Clean Modern */
+        .step-card { background: white; border-radius: 20px; padding: 2.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.06); transition: all 0.3s; border: 1px solid #f0f0f0; }
+        .step-card:hover { transform: translateY(-8px); box-shadow: 0 12px 35px rgba(220,20,60,0.15); border-color: rgba(220,20,60,0.2); }
+        .step-icon { width: 70px; height: 70px; border-radius: 16px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 1.5rem; box-shadow: 0 8px 25px rgba(220,20,60,0.3); }
+        .step-num { font-size: 0.9rem; font-weight: 800; color: var(--primary); margin-bottom: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; }
+        .step-card p { color: #333; font-weight: 600; font-size: 1.05rem; line-height: 1.6; }
+        
+        /* Testimonials - Professional */
+        .testimonial-card { background: white; padding: 2.5rem; border-radius: 20px; box-shadow: 0 6px 25px rgba(0,0,0,0.08); transition: all 0.3s; border-left: 4px solid var(--primary); }
+        .testimonial-card:hover { transform: translateY(-5px); box-shadow: 0 12px 35px rgba(220,20,60,0.15); }
+        .testimonial-stars { color: #fbbf24; font-size: 1.3rem; margin-bottom: 1.25rem; letter-spacing: 0.2rem; }
+        .testimonial-quote { font-size: 1.15rem; color: #333; line-height: 1.8; margin-bottom: 1.75rem; font-style: italic; font-weight: 400; }
+        .testimonial-author { display: flex; align-items: center; gap: 1.25rem; }
+        .testimonial-avatar { width: 55px; height: 55px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.3rem; box-shadow: 0 4px 15px rgba(220,20,60,0.3); }
+        .testimonial-name { font-weight: 700; color: #1a1a1a; margin-bottom: 0.3rem; font-size: 1.05rem; }
+        .testimonial-role { color: #666; font-size: 0.95rem; }
+        
+        /* FAQ - Modern Clean */
+        .faq-container { max-width: 900px; margin: 0 auto; }
+        .faq-item { background: white; border-radius: 16px; padding: 1.75rem 2rem; margin-bottom: 1.25rem; box-shadow: 0 3px 15px rgba(0,0,0,0.06); cursor: pointer; transition: all 0.3s; border: 1px solid #f0f0f0; }
+        .faq-item:hover { box-shadow: 0 8px 30px rgba(220,20,60,0.12); border-color: rgba(220,20,60,0.2); }
+        .faq-question { display: flex; justify-content: space-between; align-items: center; font-weight: 700; color: #1a1a1a; font-size: 1.15rem; }
+        .faq-icon { width: 32px; height: 32px; border-radius: 8px; background: rgba(220,20,60,0.1); color: var(--primary); display: flex; align-items: center; justify-content: center; transition: all 0.3s; font-size: 1.2rem; }
+        .faq-item.active .faq-icon { transform: rotate(45deg); background: var(--primary); color: white; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; color: #666; line-height: 1.7; margin-top: 0; font-size: 1.05rem; }
+        .faq-item.active .faq-answer { max-height: 500px; margin-top: 1.25rem; }
+        
+        /* Buttons - Premium */
+        .btn { padding: 1.1rem 2.5rem; border-radius: 50px; font-weight: 700; border: none; cursor: pointer; transition: all 0.3s; font-size: 1.05rem; display: inline-flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+        .btn-primary { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; box-shadow: 0 10px 35px rgba(220,20,60,0.35); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 45px rgba(220,20,60,0.45); }
+        .btn-secondary { background: white; color: var(--primary); border: 2px solid var(--primary); }
+        .btn-secondary:hover { background: var(--primary); color: white; }
+        .cta-btn { padding: 1.4rem 3.5rem; font-size: 1.25rem; }
+        
+        /* CTA Section */
+        .cta-section { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 6rem 3rem; border-radius: 30px; margin: 0 3rem; text-align: center; position: relative; overflow: hidden; }
+        .cta-section::before { content: ''; position: absolute; top: -50%; right: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(255,255,255,0.1), transparent); border-radius: 50%; }
+        .cta-section h2 { color: white; margin-bottom: 1.25rem; }
+        .cta-section p { font-size: 1.6rem; opacity: 0.95; margin-bottom: 2.5rem; font-weight: 400; }
+        .cta-features { display: flex; justify-content: center; gap: 3rem; margin-top: 2rem; flex-wrap: wrap; }
+        .cta-feature { display: flex; align-items: center; gap: 0.75rem; font-size: 1.05rem; }
+        .cta-feature i { font-size: 1.3rem; color: #4ade80; }
+        
+        /* Footer - Professional */
+        footer { background: linear-gradient(to bottom, #fafafa, #f5f5f5); border-top: 1px solid #e5e5e5; padding: 4rem 3rem 2rem; }
+        .footer-content { max-width: 1400px; margin: 0 auto; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 3rem; }
+        .footer-section h4 { font-weight: 800; color: var(--primary); margin-bottom: 1.25rem; font-size: 1.15rem; }
+        .footer-section ul { list-style: none; }
+        .footer-section li { margin-bottom: 0.75rem; }
+        .footer-section a { color: #666; text-decoration: none; transition: color 0.3s; font-weight: 500; }
+        .footer-section a:hover { color: var(--primary); }
+        .footer-logo-text { font-size: 2.2rem; font-weight: 900; color: var(--primary); margin-bottom: 0.75rem; letter-spacing: -0.5px; }
+        .footer-tagline { color: #666; font-style: italic; margin-bottom: 1.25rem; font-size: 1.05rem; }
+        .footer-desc { color: #777; line-height: 1.7; margin-bottom: 1.5rem; }
+        .footer-security { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem; }
+        .security-badge { background: white; padding: 0.75rem 1.25rem; border-radius: 10px; font-size: 0.9rem; color: #666; border: 1px solid #e5e5e5; display: flex; align-items: center; gap: 0.75rem; font-weight: 600; }
+        .security-badge i { color: #22c55e; font-size: 1.1rem; }
+        .footer-bottom { border-top: 1px solid #e5e5e5; padding-top: 2rem; text-align: center; color: #666; }
+        .footer-copy { margin-bottom: 0.75rem; font-size: 0.95rem; }
+        .footer-designer { color: #999; font-size: 0.95rem; }
+        .footer-designer strong { color: var(--primary); font-weight: 700; }
+        
+        /* Auth, Onboarding, Dashboard, Coverage Detail - Same as before */
+        .auth-screen, .onboarding-screen, .dashboard, .coverage-detail { min-height: 100vh; }
+        .auth-screen { background: linear-gradient(135deg, rgba(220,20,60,0.05), rgba(199,21,133,0.05)); display: flex; align-items: center; justify-content: center; padding: 2rem; }
+        .auth-card { background: white; border-radius: 24px; padding: 3rem; max-width: 500px; width: 100%; box-shadow: 0 20px 60px rgba(0,0,0,0.1); }
+        .auth-logo { width: 70px; height: 70px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 16px; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: 800; margin: 0 auto 1.5rem; box-shadow: 0 8px 25px rgba(220,20,60,0.3); }
+        .auth-title { font-size: 2rem; font-weight: 800; color: var(--primary); text-align: center; margin-bottom: 0.5rem; }
+        .auth-subtitle { text-align: center; color: #666; margin-bottom: 2rem; }
+        .error-msg { background: rgba(220,20,60,0.1); color: var(--primary); padding: 1rem; border-radius: 12px; margin-bottom: 1rem; font-size: 0.95rem; font-weight: 600; }
+        .auth-toggle { text-align: center; margin-top: 1.5rem; }
+        .auth-toggle button { background: none; border: none; color: var(--primary); font-weight: 700; cursor: pointer; text-decoration: underline; }
+        .back-btn { text-align: center; margin-top: 1rem; }
+        .back-btn button { background: none; border: none; color: #666; cursor: pointer; font-weight: 600; }
+        
+        .onboarding-screen { background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; align-items: center; justify-content: center; padding: 2rem; animation: fadeIn 1s; }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        .onboarding-content { text-align: center; color: white; }
+        .onboarding-icon { width: 160px; height: 160px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem; font-size: 4rem; animation: bounceIcon 2s infinite; box-shadow: 0 25px 70px rgba(0,0,0,0.35); }
+        .onboarding-icon i { color: var(--primary); }
+        @keyframes bounceIcon { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-25px); } }
+        .onboarding-title { font-size: clamp(2.5rem, 8vw, 5.5rem); font-weight: 900; margin-bottom: 1rem; text-shadow: 2px 4px 25px rgba(0,0,0,0.35); }
+        .onboarding-welcome { font-size: clamp(1.5rem, 4vw, 2.8rem); margin-bottom: 1rem; font-weight: 700; }
+        .onboarding-text { font-size: 1.3rem; max-width: 650px; margin: 0 auto; opacity: 0.95; line-height: 1.7; }
+        
+        .dashboard { background: linear-gradient(135deg, #fff, rgba(220,20,60,0.03)); padding-top: 80px; }
+        .dashboard-header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 4rem 3rem; border-radius: 0 0 30px 30px; margin-bottom: 3rem; box-shadow: 0 15px 40px rgba(220,20,60,0.25); }
+        .dashboard-welcome { font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 900; margin-bottom: 0.75rem; }
+        .dashboard-subtitle { opacity: 0.95; font-size: 1.2rem; }
+        .dashboard-nav { display: flex; gap: 1rem; margin-bottom: 3rem; padding: 0 3rem; flex-wrap: wrap; }
+        .dashboard-nav-btn { padding: 1rem 2rem; background: white; border: 2px solid #e5e5e5; border-radius: 12px; cursor: pointer; font-weight: 700; transition: all 0.3s; color: #666; }
+        .dashboard-nav-btn.active { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; border-color: transparent; box-shadow: 0 8px 25px rgba(220,20,60,0.35); }
+        .dashboard-content { max-width: 1400px; margin: 0 auto; padding: 0 3rem 4rem; }
+        .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+        .stat-card { background: white; padding: 2.5rem; border-radius: 20px; box-shadow: 0 6px 25px rgba(0,0,0,0.08); border-left: 5px solid var(--primary); }
+        .stat-label { font-size: 1rem; color: #666; font-weight: 700; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .stat-value { font-size: 3rem; font-weight: 900; color: var(--primary); }
+        
+        .coverage-detail { background: linear-gradient(135deg, rgba(220,20,60,0.03), rgba(199,21,133,0.03)); padding-top: 80px; }
+        .coverage-header { background: white; border-bottom: 1px solid rgba(220,20,60,0.1); padding: 1.75rem 3rem; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+        .back-button { background: none; border: none; color: var(--primary); font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 0.75rem; font-size: 1.05rem; transition: gap 0.3s; }
+        .back-button:hover { gap: 1rem; }
+        .detail-content { max-width: 1000px; margin: 0 auto; padding: 4rem 3rem; }
+        .detail-title { font-size: 3rem; font-weight: 900; color: var(--primary); text-align: center; margin-bottom: 4rem; }
+        .auto-scroll-card { background: white; border-radius: 24px; padding: 4rem 3rem; box-shadow: 0 15px 50px rgba(0,0,0,0.12); height: 480px; margin-bottom: 3rem; position: relative; overflow: hidden; }
+        .scroll-slides { display: flex; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); height: 100%; }
+        .scroll-slide { min-width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem; }
+        .slide-icon { font-size: 5rem; margin-bottom: 2rem; }
+        .slide-title { font-size: 2.5rem; font-weight: 800; color: var(--primary); margin-bottom: 1.25rem; }
+        .slide-desc { font-size: 1.2rem; color: #666; line-height: 1.7; max-width: 550px; }
+        .slide-num { display: inline-block; background: rgba(220,20,60,0.1); color: var(--primary); padding: 0.75rem 2rem; border-radius: 50px; font-weight: 700; margin-top: 2rem; }
+        .scroll-dots { display: flex; justify-content: center; gap: 0.75rem; margin-top: 2rem; }
+        .scroll-dot { width: 12px; height: 12px; border-radius: 50%; background: rgba(220,20,60,0.3); cursor: pointer; transition: all 0.3s; border: none; }
+        .scroll-dot.active { width: 3.5rem; background: var(--primary); border-radius: 6px; }
+        .benefits-card { background: white; border-radius: 20px; padding: 3rem; box-shadow: 0 8px 30px rgba(0,0,0,0.08); margin-bottom: 3rem; }
+        .benefits-card h3 { font-size: 2.2rem; font-weight: 800; color: #1a1a1a; margin-bottom: 2rem; }
+        .benefit-item { display: flex; gap: 1.25rem; margin-bottom: 1.5rem; align-items: flex-start; }
+        .benefit-check { width: 32px; height: 32px; border-radius: 8px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+        .benefit-text { color: #666; line-height: 1.7; font-size: 1.05rem; }
+        
+        /* Utility */
+        .hidden { display: none !important; }
+        .text-center { text-align: center; }
+        
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .hero-content-wrapper { grid-template-columns: 1fr; gap: 3rem; }
+            .hero-text { text-align: center; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        
+        @media (max-width: 768px) {
+            .nav { padding: 1rem 1.5rem; }
+            .nav-actions { display: none; }
+            .menu-btn { display: block; }
+            .hero-content-wrapper { padding: 2rem; }
+            .lead-form { padding: 2rem; }
+            .sticky-cta { bottom: 1rem; right: 1rem; }
+            .sticky-cta-btn { padding: 1rem 1.5rem; font-size: 0.95rem; }
+            section { padding: 4rem 2rem; }
+            .trust-content { grid-template-columns: 1fr; }
+            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .cta-features { flex-direction: column; gap: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Screen -->
+    <div id="mainScreen">
+        <!-- Navigation -->
+        <nav class="nav">
+            <div class="logo" onclick="window.scrollTo(0,0)">
+                <div class="logo-box">S</div>
+                <div class="logo-text-group">
+                    <div class="logo-text">SUREVIA</div>
+                    <div class="logo-sub">A Better Way To Be Covered</div>
+                </div>
+            </div>
+            <div class="nav-actions">
+                <button class="btn btn-secondary" onclick="showAuth(false)">Sign In</button>
+                <button class="btn btn-primary" onclick="scrollToForm()">Get Free Quote</button>
+            </div>
+            <button class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+        </nav>
+
+        <!-- Menu Overlay -->
+        <div class="menu-overlay" id="menuOverlay">
+            <button class="menu-item" onclick="scrollToForm(); toggleMenu();"><i class="fas fa-file-invoice" style="margin-right: 0.75rem;"></i>Get a Quote</button>
+            <button class="menu-item" onclick="showDashboard()"><i class="fas fa-tachometer-alt" style="margin-right: 0.75rem;"></i>Dashboard</button>
+            <button class="menu-item" onclick="showAuth(true); toggleMenu();"><i class="fas fa-user-circle" style="margin-right: 0.75rem;"></i>Sign In / Sign Up</button>
+            <button class="menu-item" onclick="document.getElementById('faqSection').scrollIntoView({behavior:'smooth'}); toggleMenu();"><i class="fas fa-question-circle" style="margin-right: 0.75rem;"></i>FAQs</button>
+        </div>
+
+        <!-- Sticky CTA -->
+        <div class="sticky-cta">
+            <button class="sticky-cta-btn" onclick="scrollToForm()">
+                <i class="fas fa-shield-alt"></i>
+                <span>Get Free Quote</span>
+            </button>
+        </div>
+
+        <!-- Hero Section -->
+        <div class="hero" id="heroSection">
+            <div class="hero-slides" id="heroSlides">
+                <div class="hero-slide"></div>
+                <div class="hero-slide"></div>
+                <div class="hero-slide"></div>
+            </div>
+            <div class="hero-overlay"></div>
+            <div class="hero-content-wrapper">
+                <div class="hero-text">
+                    <div class="hero-badge">
+                        <i class="fas fa-lock"></i>
+                        <span>SSL Secured</span>
+                        <span style="opacity: 0.5;">|</span>
+                        <i class="fas fa-users"></i>
+                        <span>Trusted by 10,000+</span>
+                    </div>
+                    <h1 class="hero-title">Insurance Made Clear & Simple</h1>
+                    <p class="hero-subtitle">Get personalized coverage without the confusion. Compare plans, save money, and protect what matters most — all in minutes.</p>
+                    <div class="hero-features">
+                        <div class="hero-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Instant Quotes</span>
+                        </div>
+                        <div class="hero-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>No Hidden Fees</span>
+                        </div>
+                        <div class="hero-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Expert Guidance</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="lead-form" id="leadForm">
+                    <div class="lead-form-header">
+                        <h3>Get Your Free Quote</h3>
+                        <p>90 seconds to better coverage. No obligations.</p>
+                    </div>
+                    <form onsubmit="handleLeadForm(event)">
+                        <div class="form-group">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-input" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-input" placeholder="john@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Phone Number</label>
+                            <input type="tel" class="form-input" placeholder="(234) 000-0000" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Coverage Type</label>
+                            <select class="form-select" required>
+                                <option value="">Select coverage...</option>
+                                <option value="health">Health Insurance</option>
+                                <option value="auto">Auto Insurance</option>
+                                <option value="life">Life Insurance</option>
+                                <option value="business">Business Insurance</option>
+                                <option value="multiple">Multiple Types</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                            Get My Free Quote
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <p class="form-privacy">By submitting, you agree to our Privacy Policy</p>
+                    </form>
+                </div>
+            </div>
+            <div class="hero-dots">
+                <button class="dot active" onclick="goToSlide(0)"></button>
+                <button class="dot" onclick="goToSlide(1)"></button>
+                <button class="dot" onclick="goToSlide(2)"></button>
+            </div>
+        </div>
+
+        <!-- Trust Bar -->
+        <div class="trust-bar">
+            <div class="trust-content">
+                <div class="trust-item">
+                    <div class="trust-icon"><i class="fas fa-star"></i></div>
+                    <div class="trust-text">
+                        <div class="trust-label">4.8 Star Rating</div>
+                        <div class="trust-sub">From 2,500+ Reviews</div>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon"><i class="fas fa-users"></i></div>
+                    <div class="trust-text">
+                        <div class="trust-label">10,000+ Customers</div>
+                        <div class="trust-sub">Protected & Happy</div>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="trust-text">
+                        <div class="trust-label">Bank-Level Security</div>
+                        <div class="trust-sub">256-bit SSL Encryption</div>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon"><i class="fas fa-bolt"></i></div>
+                    <div class="trust-text">
+                        <div class="trust-label">Instant Quotes</div>
+                        <div class="trust-sub">Results in 90 Seconds</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scrolling Text Bar -->
+        <div class="scroll-bar">
+            <div class="scroll-content">
+                <span class="scroll-text"><i class="fas fa-check"></i> Clear coverage</span>
+                <span class="scroll-text"><i class="fas fa-check"></i> Calm decisions</span>
+                <span class="scroll-text"><i class="fas fa-check"></i> No pressure</span>
+                <span class="scroll-text"><i class="fas fa-check"></i> Built for you</span>
+                <span class="scroll-text"><i class="fas fa-check"></i> Simple. Secure. Sure.</span>
+                <span class="scroll-text"><i class="fas fa-check"></i> Guidance first</span>
+                <span class="scroll-text"><i class="fas fa-check"></i> Clear coverage</span>
+                <span class="scroll-text"><i class="fas fa-check"></i> Calm decisions</span>
+                <span class="scroll-text"><i class="fas fa-check"></i> No pressure</span>
+                <span class="scroll-text"><i class="fas fa-check"></i> Built for you</span>
+                <span class="scroll-text"><i class="fas fa-check"></i> Simple. Secure. Sure.</span>
+                <span class="scroll-text"><i class="fas fa-check"></i> Guidance first</span>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-icon"><i class="fas fa-dollar-sign"></i></div>
+                    <div class="stat-number">$2.4M+</div>
+                    <div class="stat-label">Coverage Provided</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon"><i class="fas fa-users"></i></div>
+                    <div class="stat-number">10K+</div>
+                    <div class="stat-label">Customers Protected</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon"><i class="fas fa-star"></i></div>
+                    <div class="stat-number">4.8</div>
+                    <div class="stat-label">Average Rating</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon"><i class="fas fa-headset"></i></div>
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Customer Support</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- What Surevia Does -->
+        <section>
+            <div class="grid grid-2">
+                <div>
+                    <h2 style="text-align: left;">Why Surevia Works Better</h2>
+                    <p style="font-size: 1.3rem; line-height: 1.8; color: #333; font-weight: 500; margin-bottom: 1.5rem;">
+                        We cut through insurance jargon and show you exactly what you're paying for — in plain English.
+                    </p>
+                    <p style="color: #666; font-size: 1.1rem; line-height: 1.6; margin-bottom: 2.5rem;">
+                        No hidden fees. No confusing terms. Just clear, honest coverage that fits your life and budget.
+                    </p>
+                    <button class="btn btn-primary" onclick="scrollToForm()">
+                        Start Your Quote
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                <div class="logo-section">
+                    <div class="logo-container">
+                        <img src="https://i.imgur.com/YOUR-LOGO.png" alt="Surevia Logo" class="logo-image" id="animatedLogo">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section style="background: linear-gradient(135deg, rgba(220,20,60,0.03), rgba(199,21,133,0.03)); border-radius: 30px; margin: 0 3rem;">
+            <h2>How Surevia Works</h2>
+            <p class="section-subtitle">Get covered in 4 simple steps. No confusing paperwork, no hidden surprises.</p>
+            <div class="grid grid-4">
+                <div class="step-card">
+                    <div class="step-icon"><i class="fas fa-edit"></i></div>
+                    <div class="step-num">Step 1</div>
+                    <p>Tell us what you need (takes 90 seconds)</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-icon"><i class="fas fa-search"></i></div>
+                    <div class="step-num">Step 2</div>
+                    <p>See personalized quotes instantly</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="step-num">Step 3</div>
+                    <p>Choose the plan that fits your budget</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="step-num">Step 4</div>
+                    <p>Get covered — start protecting what matters</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Coverage Options -->
+        <section>
+            <h2>Coverage That Fits Your Life</h2>
+            <p class="section-subtitle">Whether you're protecting your health, your car, your family, or your business — we've got you covered.</p>
+            <div class="grid grid-2">
+                <div class="card" data-coverage="health" onclick="showCoverageDetail('Health')">
+                    <div class="card-bg"></div>
+                    <div class="card-content">
+                        <div class="icon-box"><i class="fas fa-heartbeat"></i></div>
+                        <h3>Health Insurance</h3>
+                        <p>Comprehensive medical, dental, and vision coverage for you and your family. Preventive care included.</p>
+                        <div class="card-cta">
+                            Explore Health Plans
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" data-coverage="auto" onclick="showCoverageDetail('Auto')">
+                    <div class="card-bg"></div>
+                    <div class="card-content">
+                        <div class="icon-box"><i class="fas fa-car"></i></div>
+                        <h3>Auto Insurance</h3>
+                        <p>Full protection on the road with collision, liability, and roadside assistance coverage.</p>
+                        <div class="card-cta">
+                            Explore Auto Plans
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" data-coverage="life" onclick="showCoverageDetail('Life')">
+                    <div class="card-bg"></div>
+                    <div class="card-content">
+                        <div class="icon-box"><i class="fas fa-shield-alt"></i></div>
+                        <h3>Life Insurance</h3>
+                        <p>Secure your family's financial future with term or whole life coverage options.</p>
+                        <div class="card-cta">
+                            Explore Life Plans
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" data-coverage="business" onclick="showCoverageDetail('Business')">
+                    <div class="card-bg"></div>
+                    <div class="card-content">
+                        <div class="icon-box"><i class="fas fa-briefcase"></i></div>
+                        <h3>Business Insurance</h3>
+                        <p>Protect your company with liability, property, and employee benefit coverage.</p>
+                        <div class="card-cta">
+                            Explore Business Plans
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section>
+            <h2>What Our Customers Say</h2>
+            <p class="section-subtitle">Real stories from real people who found the right coverage with Surevia.</p>
+            <div class="grid grid-3">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-quote">"Surevia made finding health insurance so simple. I compared plans in minutes and saved $200/month. No confusing jargon!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">SM</div>
+                        <div>
+                            <div class="testimonial-name">Sarah Martinez</div>
+                            <div class="testimonial-role">Small Business Owner</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-quote">"Finally, insurance that makes sense! The team walked me through every option. Got my family covered in one afternoon."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">JO</div>
+                        <div>
+                            <div class="testimonial-name">James Okonkwo</div>
+                            <div class="testimonial-role">Father of 3</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-quote">"Best decision I made this year. Switched to Surevia and cut my auto insurance by 30%. Customer service is amazing!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">EA</div>
+                        <div>
+                            <div class="testimonial-name">Emily Adeyemi</div>
+                            <div class="testimonial-role">Lagos Resident</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faqSection">
+            <h2>Frequently Asked Questions</h2>
+            <p class="section-subtitle">Got questions? We've got answers. Everything you need to know about getting covered with Surevia.</p>
+            <div class="faq-container">
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <span>How quickly can I get a quote?</span>
+                        <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        You'll get instant quotes in about 90 seconds. Just fill out our simple form with your basic info, and we'll show you personalized coverage options immediately. No waiting, no back-and-forth emails.
+                    </div>
+                </div>
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <span>Is there really no hidden fees?</span>
+                        <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        Absolutely none. The price you see is the price you pay. We break down every cost in plain English before you commit. No surprises, no fine print traps.
+                    </div>
+                </div>
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <span>Can I change or cancel my plan?</span>
+                        <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes! You can adjust your coverage or cancel anytime. We believe in flexibility — life changes, and your insurance should too. Our team will help you make changes with zero hassle.
+                    </div>
+                </div>
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <span>Do you offer family plans?</span>
+                        <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes! We offer family coverage for health, auto, and life insurance. Family plans are often more affordable than individual plans, and we'll help you find the best option for your household.
+                    </div>
+                </div>
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <span>How does the claims process work?</span>
+                        <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        We've made claims simple. Just submit your claim through our dashboard or call our 24/7 support. Most claims are processed within 48 hours. We handle the paperwork so you don't have to.
+                    </div>
+                </div>
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <span>Is my personal information secure?</span>
+                        <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        Absolutely. We use bank-level 256-bit SSL encryption to protect your data. Your information is never shared with third parties without your consent. We're fully compliant with data protection regulations.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2>Ready to Get Covered?</h2>
+            <p>Join 10,000+ people who chose clarity over confusion.</p>
+            <button class="btn cta-btn" style="background: white; color: var(--primary);" onclick="scrollToForm()">
+                Get Your Free Quote Now
+                <i class="fas fa-arrow-right"></i>
+            </button>
+            <div class="cta-features">
+                <div class="cta-feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>90-second quote</span>
+                </div>
+                <div class="cta-feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>No obligations</span>
+                </div>
+                <div class="cta-feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Instant results</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-grid">
+                    <div class="footer-section">
+                        <div class="footer-logo-text">SUREVIA</div>
+                        <div class="footer-tagline">A better way to be covered.</div>
+                        <p class="footer-desc">Insurance made clear, simple, and human. Get the coverage you need without the confusion.</p>
+                        <div class="footer-security">
+                            <div class="security-badge">
+                                <i class="fas fa-lock"></i>
+                                <span>SSL Secured</span>
+                            </div>
+                            <div class="security-badge">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Privacy Protected</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Coverage</h4>
+                        <ul>
+                            <li><a href="#" onclick="showCoverageDetail('Health'); return false;">Health Insurance</a></li>
+                            <li><a href="#" onclick="showCoverageDetail('Auto'); return false;">Auto Insurance</a></li>
+                            <li><a href="#" onclick="showCoverageDetail('Life'); return false;">Life Insurance</a></li>
+                            <li><a href="#" onclick="showCoverageDetail('Business'); return false;">Business Insurance</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">How It Works</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Careers</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">File a Claim</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="footer-copy">© 2026 Surevia. All rights reserved.</div>
+                    <div class="footer-designer">Designed by <strong>RotoInk</strong></div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Auth, Onboarding, Dashboard, Coverage Detail Screens -->
+    <!-- (Same structure as before, keeping it brief for space) -->
+    <div id="authScreen" class="auth-screen hidden">
+        <div class="auth-card">
+            <div class="auth-logo">S</div>
+            <h2 class="auth-title" id="authTitle">Join Surevia</h2>
+            <p class="auth-subtitle" id="authSubtitle">Create your account and get started</p>
+            <div id="errorMsg" class="error-msg hidden"></div>
+            <form id="authForm" onsubmit="handleAuth(event)">
+                <div class="form-group" id="nameGroup">
+                    <label class="form-label">Your Name</label>
+                    <input type="text" class="form-input" id="nameInput" placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-input" id="emailInput" placeholder="you@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" id="passwordInput" placeholder="Enter password" required>
+                </div>
+                <div class="form-group" id="confirmGroup">
+                    <label class="form-label">Confirm Password</label>
+                    <input type="password" class="form-input" id="confirmInput" placeholder="Confirm password">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;" id="authSubmitBtn">Create Account</button>
+            </form>
+            <div class="auth-toggle">
+                <button onclick="toggleAuthMode()" id="authToggleBtn">Already have an account? Sign In</button>
+            </div>
+            <div class="back-btn">
+                <button onclick="hideAuth()">← Back to home</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="onboardingScreen" class="onboarding-screen hidden">
+        <div class="onboarding-content">
+            <div class="onboarding-icon"><i class="fas fa-shield-alt"></i></div>
+            <h1 class="onboarding-title" id="onboardingName">Welcome, Friend! 🎉</h1>
+            <p class="onboarding-welcome">Welcome to SureVia</p>
+            <p class="onboarding-text">Your journey to clear, confident coverage starts now. We're here to guide you every step of the way.</p>
+        </div>
+    </div>
+
+    <div id="dashboardScreen" class="dashboard hidden">
+        <nav class="nav">
+            <div class="logo" onclick="window.scrollTo(0,0)">
+                <div class="logo-box">S</div>
+                <div class="logo-text-group">
+                    <div class="logo-text">SUREVIA</div>
+                    <div class="logo-sub">A Better Way To Be Covered</div>
+                </div>
+            </div>
+            <div style="display: flex; gap: 1rem;">
+                <button class="btn btn-secondary" onclick="hideDashboard()">Home</button>
+                <button class="btn btn-primary" onclick="signOut()">Sign Out</button>
+            </div>
+        </nav>
+        <div class="dashboard-header">
+            <h1 class="dashboard-welcome" id="dashboardWelcome">Welcome back, Friend! 👋</h1>
+            <p class="dashboard-subtitle">Everything you need, clearly in one place.</p>
+        </div>
+        <div class="dashboard-nav">
+            <button class="dashboard-nav-btn active">Overview</button>
+            <button class="dashboard-nav-btn">My Coverage</button>
+            <button class="dashboard-nav-btn">Documents</button>
+            <button class="dashboard-nav-btn">Support</button>
+        </div>
+        <div class="dashboard-content">
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Active Policies</div>
+                    <div class="stat-value">3</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Total Coverage</div>
+                    <div class="stat-value">$450K</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Next Payment</div>
+                    <div class="stat-value">Feb 15</div>
+                </div>
+            </div>
+            <div style="background: white; border-radius: 20px; padding: 3rem; box-shadow: 0 6px 25px rgba(0,0,0,0.08);">
+                <h3 style="font-size: 2rem; font-weight: 800; color: var(--primary); margin-bottom: 2rem;">Your Coverage</h3>
+                <div style="display: grid; gap: 1.5rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 1.75rem; background: rgba(220,20,60,0.03); border-radius: 16px; border-left: 5px solid var(--primary);">
+                        <div>
+                            <div style="font-weight: 700; font-size: 1.15rem; margin-bottom: 0.3rem;">Health Insurance</div>
+                            <div style="color: #666; font-size: 0.95rem;">Active</div>
+                        </div>
+                        <div style="font-weight: 800; color: var(--primary); font-size: 1.3rem;">$280/mo</div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 1.75rem; background: rgba(220,20,60,0.03); border-radius: 16px; border-left: 5px solid var(--secondary);">
+                        <div>
+                            <div style="font-weight: 700; font-size: 1.15rem; margin-bottom: 0.3rem;">Auto Insurance</div>
+                            <div style="color: #666; font-size: 0.95rem;">Active</div>
+                        </div>
+                        <div style="font-weight: 800; color: var(--primary); font-size: 1.3rem;">$120/mo</div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 1.75rem; background: rgba(220,20,60,0.03); border-radius: 16px; border-left: 5px solid #db7093;">
+                        <div>
+                            <div style="font-weight: 700; font-size: 1.15rem; margin-bottom: 0.3rem;">Life Insurance</div>
+                            <div style="color: #666; font-size: 0.95rem;">Active</div>
+                        </div>
+                        <div style="font-weight: 800; color: var(--primary); font-size: 1.3rem;">$65/mo</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="coverageDetailScreen" class="coverage-detail hidden">
+        <div class="coverage-header">
+            <button class="back-button" onclick="hideCoverageDetail()">
+                <i class="fas fa-arrow-left"></i>
+                <span>Back</span>
+            </button>
+            <div id="coverageTitle" style="font-weight: 800; font-size: 1.3rem; color: #1a1a1a;"></div>
+        </div>
+        <div class="detail-content">
+            <h2 class="detail-title">What's Included</h2>
+            <div class="auto-scroll-card">
+                <div class="scroll-slides" id="coverageSlides"></div>
+                <div class="scroll-dots" id="coverageDots"></div>
+            </div>
+            <div class="benefits-card">
+                <h3 id="benefitsTitle">Why Choose Health with Surevia?</h3>
+                <div>
+                    <div class="benefit-item">
+                        <div class="benefit-check"><i class="fas fa-check"></i></div>
+                        <div class="benefit-text">Clear pricing with no hidden fees</div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-check"><i class="fas fa-check"></i></div>
+                        <div class="benefit-text">24/7 customer support when you need it</div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-check"><i class="fas fa-check"></i></div>
+                        <div class="benefit-text">Easy claims process with quick turnaround</div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-check"><i class="fas fa-check"></i></div>
+                        <div class="benefit-text">Flexible plans that grow with you</div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-primary cta-btn" id="coverageCTA">Get Health Coverage</button>
+                <p style="margin-top: 1.25rem; color: #666; font-size: 1.05rem;">No pressure. Take your time to decide.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // State
+        let currentHeroSlide = 0;
+        let isSignUpMode = true;
+        let userData = null;
+        let currentCoverage = null;
+        let currentCoverageSlide = 0;
+        let coverageAutoScroll = null;
+
+        // Coverage Data
+        const coverageData = {
+            Health: [
+                { icon: 'fas fa-hospital', title: 'Complete Coverage', desc: 'Full medical, dental, and vision protection for your whole family' },
+                { icon: 'fas fa-check-circle', title: 'Preventive Care', desc: 'Annual checkups, screenings, and wellness visits included at no extra cost' },
+                { icon: 'fas fa-ambulance', title: 'Emergency Support', desc: '24/7 emergency care coverage with fast claims processing' },
+                { icon: 'fas fa-user-friends', title: 'Family Plans', desc: 'Flexible coverage options that protect everyone you love' }
+            ],
+            Auto: [
+                { icon: 'fas fa-car-crash', title: 'Collision Coverage', desc: 'Full protection for vehicle damage, theft, and accidents' },
+                { icon: 'fas fa-shield-alt', title: 'Liability Protection', desc: 'Coverage for injuries and damages you might cause to others' },
+                { icon: 'fas fa-tools', title: 'Roadside Assistance', desc: '24/7 emergency towing, flat tire, and lockout service' },
+                { icon: 'fas fa-key', title: 'Rental Reimbursement', desc: 'Car rental coverage while your vehicle is being repaired' }
+            ],
+            Life: [
+                { icon: 'fas fa-calendar-alt', title: 'Term Life', desc: 'Affordable coverage for specific periods when you need it most' },
+                { icon: 'fas fa-briefcase', title: 'Whole Life', desc: 'Lifelong protection with cash value that grows over time' },
+                { icon: 'fas fa-heart', title: 'Family Benefits', desc: 'Secure your family\'s financial future and peace of mind' },
+                { icon: 'fas fa-file-alt', title: 'Easy Claims', desc: 'Simple process when it matters most, with compassionate support' }
+            ],
+            Business: [
+                { icon: 'fas fa-building', title: 'Liability Coverage', desc: 'Protect your business from lawsuits and legal claims' },
+                { icon: 'fas fa-boxes', title: 'Property Insurance', desc: 'Coverage for office equipment, inventory, and business assets' },
+                { icon: 'fas fa-users', title: 'Employee Benefits', desc: 'Health and wellness coverage to attract and retain talent' },
+                { icon: 'fas fa-chart-line', title: 'Business Interruption', desc: 'Income protection during unexpected closures or disruptions' }
+            ]
+        };
+
+        // Helper Functions
+        function scrollToForm() {
+            document.getElementById('leadForm').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function toggleMenu() {
+            document.getElementById('menuOverlay').classList.toggle('active');
+        }
+
+        function toggleFAQ(element) {
+            const wasActive = element.classList.contains('active');
+            document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('active'));
+            if (!wasActive) element.classList.add('active');
+        }
+
+        // Hero Auto-Scroll
+        function goToSlide(n) {
+            currentHeroSlide = n;
+            document.getElementById('heroSlides').style.transform = `translateX(-${currentHeroSlide * 100}%)`;
+            document.querySelectorAll('.hero-dots .dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentHeroSlide);
+            });
+        }
+
+        function nextSlide() {
+            currentHeroSlide = (currentHeroSlide + 1) % 3;
+            goToSlide(currentHeroSlide);
+        }
+
+        setInterval(nextSlide, 4000);
+
+        // Lead Form
+        function handleLeadForm(e) {
+            e.preventDefault();
+            alert('Thank you! A Surevia expert will contact you within 24 hours with your personalized quote.');
+            e.target.reset();
+        }
+
+        // Auth
+        function showAuth(isSignUp) {
+            isSignUpMode = isSignUp;
+            document.getElementById('mainScreen').classList.add('hidden');
+            document.getElementById('authScreen').classList.remove('hidden');
+            if (isSignUp) {
+                document.getElementById('authTitle').textContent = 'Join Surevia';
+                document.getElementById('authSubtitle').textContent = 'Create your account and get started';
+                document.getElementById('nameGroup').classList.remove('hidden');
+                document.getElementById('confirmGroup').classList.remove('hidden');
+                document.getElementById('authSubmitBtn').textContent = 'Create Account';
+                document.getElementById('authToggleBtn').textContent = 'Already have an account? Sign In';
+            } else {
+                document.getElementById('authTitle').textContent = 'Welcome Back';
+                document.getElementById('authSubtitle').textContent = 'Sign in to your account';
+                document.getElementById('nameGroup').classList.add('hidden');
+                document.getElementById('confirmGroup').classList.add('hidden');
+                document.getElementById('authSubmitBtn').textContent = 'Sign In';
+                document.getElementById('authToggleBtn').textContent = "Don't have an account? Sign Up";
+            }
+            document.getElementById('errorMsg').classList.add('hidden');
+            document.getElementById('authForm').reset();
+        }
+
+        function hideAuth() {
+            document.getElementById('authScreen').classList.add('hidden');
+            document.getElementById('mainScreen').classList.remove('hidden');
+        }
+
+        function toggleAuthMode() {
+            showAuth(!isSignUpMode);
+        }
+
+        function handleAuth(e) {
+            e.preventDefault();
+            const email = document.getElementById('emailInput').value;
+            const password = document.getElementById('passwordInput').value;
+            const errorMsg = document.getElementById('errorMsg');
+            if (isSignUpMode) {
+                const name = document.getElementById('nameInput').value;
+                const confirm = document.getElementById('confirmInput').value;
+                if (!name || !email || !password || !confirm) {
+                    errorMsg.textContent = 'Please fill in all fields';
+                    errorMsg.classList.remove('hidden');
+                    return;
+                }
+                if (password !== confirm) {
+                    errorMsg.textContent = 'Passwords do not match';
+                    errorMsg.classList.remove('hidden');
+                    return;
+                }
+                if (password.length < 6) {
+                    errorMsg.textContent = 'Password must be at least 6 characters';
+                    errorMsg.classList.remove('hidden');
+                    return;
+                }
+                userData = { name, email };
+                showOnboarding();
+            } else {
+                if (!email || !password) {
+                    errorMsg.textContent = 'Please enter email and password';
+                    errorMsg.classList.remove('hidden');
+                    return;
+                }
+                userData = { name: 'User', email };
+                showDashboard();
+            }
+        }
+
+        function showOnboarding() {
+            document.getElementById('authScreen').classList.add('hidden');
+            document.getElementById('onboardingScreen').classList.remove('hidden');
+            document.getElementById('onboardingName').textContent = `Welcome, ${userData.name}! 🎉`;
+            setTimeout(() => {
+                document.getElementById('onboardingScreen').classList.add('hidden');
+                showDashboard();
+            }, 4000);
+        }
+
+        function showDashboard() {
+            if (!userData) { showAuth(false); return; }
+            document.getElementById('mainScreen').classList.add('hidden');
+            document.getElementById('authScreen').classList.add('hidden');
+            document.getElementById('dashboardScreen').classList.remove('hidden');
+            document.getElementById('dashboardWelcome').textContent = `Welcome back, ${userData.name}! 👋`;
+        }
+
+        function hideDashboard() {
+            document.getElementById('dashboardScreen').classList.add('hidden');
+            document.getElementById('mainScreen').classList.remove('hidden');
+        }
+
+        function signOut() {
+            userData = null;
+            hideDashboard();
+        }
+
+        function showCoverageDetail(type) {
+            currentCoverage = type;
+            const data = coverageData[type];
+            document.getElementById('mainScreen').classList.add('hidden');
+            document.getElementById('coverageDetailScreen').classList.remove('hidden');
+            document.getElementById('coverageTitle').textContent = `${type} Insurance`;
+            document.getElementById('benefitsTitle').textContent = `Why Choose ${type} with Surevia?`;
+            document.getElementById('coverageCTA').textContent = `Get ${type} Coverage`;
+            const slidesContainer = document.getElementById('coverageSlides');
+            slidesContainer.innerHTML = '';
+            data.forEach((item, i) => {
+                const slide = document.createElement('div');
+                slide.className = 'scroll-slide';
+                slide.innerHTML = `
+                    <div class="slide-icon"><i class="${item.icon}"></i></div>
+                    <div class="slide-title">${item.title}</div>
+                    <div class="slide-desc">${item.desc}</div>
+                    <div class="slide-num">${i + 1} of 4</div>
+                `;
+                slidesContainer.appendChild(slide);
+            });
+            const dotsContainer = document.getElementById('coverageDots');
+            dotsContainer.innerHTML = '';
+            for (let i = 0; i < 4; i++) {
+                const dot = document.createElement('button');
+                dot.className = 'scroll-dot' + (i === 0 ? ' active' : '');
+                dot.onclick = () => goToCoverageSlide(i);
+                dotsContainer.appendChild(dot);
+            }
+            currentCoverageSlide = 0;
+            startCoverageAutoScroll();
+        }
+
+        function hideCoverageDetail() {
+            if (coverageAutoScroll) clearInterval(coverageAutoScroll);
+            document.getElementById('coverageDetailScreen').classList.add('hidden');
+            document.getElementById('mainScreen').classList.remove('hidden');
+        }
+
+        function goToCoverageSlide(n) {
+            currentCoverageSlide = n;
+            document.getElementById('coverageSlides').style.transform = `translateX(-${currentCoverageSlide * 100}%)`;
+            document.querySelectorAll('.scroll-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentCoverageSlide);
+            });
+        }
+
+        function nextCoverageSlide() {
+            currentCoverageSlide = (currentCoverageSlide + 1) % 4;
+            goToCoverageSlide(currentCoverageSlide);
+        }
+
+        function startCoverageAutoScroll() {
+            if (coverageAutoScroll) clearInterval(coverageAutoScroll);
+            coverageAutoScroll = setInterval(nextCoverageSlide, 4000);
+        }
+    </script>
+</body>
+</html>
